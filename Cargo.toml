@@ -1,0 +1,64 @@
+[package]
+name = "enform"
+version = "0.1.0"
+edition = "2024"
+description = "3D spatial creative environment powered by BitParty actors"
+license = "MIT"
+
+[dependencies]
+# Actor runtime
+bitparty = { path = "../../actors/bitparty", default-features = false, features = ["serde"] }
+
+# GPU rendering
+wgpu = "28"
+winit = "0.30"
+
+# Physics
+rapier3d = "0.22"
+
+# Math
+nalgebra = "0.33"
+glam = "0.29"
+
+# 3D assets
+gltf = "1.4"
+
+# Voxel world
+noise = "0.9"
+
+# Persistence
+rusqlite = { version = "0.32", features = ["bundled"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+uuid = { version = "1", features = ["v4", "serde"] }
+
+# Networking (bridge)
+tungstenite = "0.24"
+
+# Actor internals (for ActorId construction in tests)
+slotmap = "1"
+
+# HTTP client for AI APIs
+reqwest = { version = "0.12", features = ["json", "blocking"] }
+
+# Audio
+rodio = "0.20"
+
+# VR (compile-gated, requires Windows/Linux with OpenXR runtime)
+openxr = { version = "0.19", optional = true }
+
+# Utilities
+log = "0.4"
+env_logger = "0.11"
+crossbeam = "0.8"
+parking_lot = "0.12"
+bytemuck = { version = "1", features = ["derive"] }
+thiserror = "2"
+anyhow = "1"
+pollster = "0.4"
+
+[features]
+default = []
+vr = ["openxr"]
